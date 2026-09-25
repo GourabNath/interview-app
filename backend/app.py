@@ -7,6 +7,6 @@ app = FastAPI()
 
 
 @app.get("/question")
-def get_question():
-    question = generate_question()
+def get_question(topic: str):
+    question = generate_question(topic)
     return {"question": question}

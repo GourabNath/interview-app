@@ -1,6 +1,5 @@
 from dotenv import load_dotenv
 from openai import OpenAI
-import os
 
 load_dotenv(override=True)
 
@@ -18,9 +17,9 @@ INSTRUCTIONS:
 
 '''
 
-user_message = '''Generate one interview question for a data science candidate.'''
+user_message = '''Generate one interview question about a {topic}.'''
 
-def generate_question():
+def generate_question(topic):
     messages = [
         {
             "role": "system",
@@ -28,7 +27,7 @@ def generate_question():
         },
         {
             "role": "user",
-            "content": user_message
+            "content": user_message.format(topic=topic)
         }
     ]
 
@@ -42,4 +41,4 @@ def generate_question():
 
 
 if __name__ == "__main__":
-    print(generate_question())
+    print(generate_question("machine learning"))
