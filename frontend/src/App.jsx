@@ -1,4 +1,8 @@
+import { useState } from "react"
+
 function App() {
+  const [topic, setTopic] = useState("")
+
   return (
     <div>
       <h1>AI Interviewer</h1>
@@ -8,9 +12,13 @@ function App() {
       <input
         type="text"
         placeholder="Enter a topic (optional)"
+        value={topic}
+        onChange={(event) => setTopic(event.target.value)}
       />
 
-      <button>Generate Question</button>
+      <button onClick={() => alert(topic || "Random topic")}>
+        Generate Question
+      </button>
     </div>
   )
 }
