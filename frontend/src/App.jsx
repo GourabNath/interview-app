@@ -15,8 +15,8 @@ function App() {
 
     try {
       const url = topic.trim()
-        ? `http://127.0.0.1:8000/question?topic=${encodeURIComponent(topic)}`
-        : "http://127.0.0.1:8000/question"
+       ? `https://ai-interviewer-backend-ep70.onrender.com/question?topic=${encodeURIComponent(topic)}`
+       : "https://ai-interviewer-backend-ep70.onrender.com/question"
 
       const response = await fetch(url)
 
