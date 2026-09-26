@@ -9,7 +9,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
     "http://localhost:5173",
-    "https://interview-app-phty.onrender.com/",
+    "https://interview-app-phty.onrender.com",
 ],
     allow_credentials=True,
     allow_methods=["*"],
