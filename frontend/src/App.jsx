@@ -1,13 +1,41 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./App.css"
+
+const brewingMessages = [
+  "Warming up the kettle...",
+  "Picking the right beans...",
+  "Finding something worth thinking about...",
+  "Adding a little Data Science...",
+  "Brewing your question..."
+]
 
 function App() {
   const [topic, setTopic] = useState("")
   const [question, setQuestion] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [brewingMessage, setBrewingMessage] = useState("")
 
-  // API layer: React → FastAPI → OpenAI
+  // Rotate the brewing messages while the API request is running.
+  useEffect(() => {
+    if (!loading) {
+      setBrewingMessage("")
+      return
+    }
+
+    let messageIndex = 0
+
+    setBrewingMessage(brewingMessages[messageIndex])
+
+    const interval = setInterval(() => {
+      messageIndex = (messageIndex + 1) % brewingMessages.length
+      setBrewingMessage(brewingMessages[messageIndex])
+    }, 700)
+
+    return () => clearInterval(interval)
+  }, [loading])
+
+  // React → FastAPI → OpenAI
   async function generateQuestion() {
     setLoading(true)
     setError("")
@@ -15,8 +43,8 @@ function App() {
 
     try {
       const url = topic.trim()
-       ? `https://ai-interviewer-backend-ep70.onrender.com/question?topic=${encodeURIComponent(topic)}`
-       : "https://ai-interviewer-backend-ep70.onrender.com/question"
+        ? `https://ai-interviewer-backend-ep70.onrender.com/question?topic=${encodeURIComponent(topic)}`
+        : "https://ai-interviewer-backend-ep70.onrender.com/question"
 
       const response = await fetch(url)
 
@@ -38,21 +66,21 @@ function App() {
     <div className="app">
       <main className="container">
 
-        {/* BRAND / HEADER */}
+        {/* BRAND */}
         <header className="hero">
-          <div className="logo">AI</div>
+          <div className="logo">DB</div>
 
           <div>
-            <h1>AI Interviewer</h1>
-            <p>Sharpen your Data Science interview skills.</p>
+            <h1>Data Brew</h1>
+            <p>Start your day with a cup of Data Science.</p>
           </div>
         </header>
 
-        {/* INPUT SECTION */}
+        {/* QUESTION GENERATOR */}
         <section className="generator-card">
 
           <label htmlFor="topic">
-            What do you want to practice?
+            What do you want to think about?
           </label>
 
           <div className="input-row">
@@ -63,7 +91,7 @@ function App() {
               value={topic}
               onChange={(event) => setTopic(event.target.value)}
               onKeyDown={(event) => {
-                if (event.key === "Enter") {
+                if (event.key === "Enter" && !loading) {
                   generateQuestion()
                 }
               }}
@@ -73,28 +101,36 @@ function App() {
               onClick={generateQuestion}
               disabled={loading}
             >
-              {loading ? "Generating..." : "Generate"}
+              {loading ? "Brewing..." : "Brew a Question"}
             </button>
           </div>
 
           <p className="hint">
-            Leave it blank and we'll choose a random Data Science topic.
+            Leave it blank and we'll choose a Data Science topic for you.
           </p>
         </section>
 
-        {/* ERROR STATE */}
+        {/* BREWING STATE */}
+        {loading && (
+          <section className="brewing-state">
+            <div className="brewing-line"></div>
+            <p>{brewingMessage}</p>
+          </section>
+        )}
+
+        {/* ERROR */}
         {error && (
           <div className="error-message">
             {error}
           </div>
         )}
 
-        {/* QUESTION OUTPUT */}
-        {question && (
+        {/* QUESTION */}
+        {question && !loading && (
           <section className="question-card">
 
             <div className="question-label">
-              INTERVIEW QUESTION
+              TODAY'S DATA CHALLENGE
             </div>
 
             <p className="question">
@@ -102,19 +138,21 @@ function App() {
             </p>
 
             <div className="question-footer">
-              <span>Take your time. Think before you answer.</span>
+              Take your time. Think before you answer.
             </div>
 
           </section>
         )}
 
-        {/* EMPTY STATE */}
+        {/* INITIAL STATE */}
         {!question && !loading && !error && (
           <section className="empty-state">
             <div className="empty-icon">?</div>
-            <h2>Your next question is waiting.</h2>
+
+            <h2>Your next challenge is waiting.</h2>
+
             <p>
-              Choose a topic or let AI surprise you.
+              Choose a topic or let Data Brew surprise you.
             </p>
           </section>
         )}

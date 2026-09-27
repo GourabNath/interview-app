@@ -230,3 +230,47 @@
     font-size: 18px;
   }
 }
+
+/* ---------- BREWING STATE ---------- */
+
+.brewing-state {
+  margin-top: 24px;
+  padding: 32px;
+  background: white;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.brewing-line {
+  width: 42px;
+  height: 3px;
+  margin: 0 auto 20px;
+  background: #111827;
+  border-radius: 3px;
+  animation: brewing 1s ease-in-out infinite;
+}
+
+.brewing-state p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+@keyframes brewing {
+  0% {
+    width: 20px;
+    opacity: 0.4;
+  }
+
+  50% {
+    width: 60px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 20px;
+    opacity: 0.4;
+  }
+}
