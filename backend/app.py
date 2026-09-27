@@ -21,3 +21,8 @@ app.add_middleware(
 def get_question(topic: str | None = None):
     question = generate_question(topic)
     return {"question": question}
+
+#Temp
+@app.get("/health")
+def health():
+    return {"status": "ok"}
