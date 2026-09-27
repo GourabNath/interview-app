@@ -64,17 +64,26 @@ function App() {
 
   return (
     <div className="app">
+
       <main className="container">
 
         {/* BRAND */}
         <header className="hero">
-          <div className="logo">DB</div>
 
-          <div>
-            <h1>Data Brew</h1>
-            <p>Start your day with a cup of Data Science.</p>
-          </div>
+          <img
+            src="/coffee.png"
+            alt="Coffee cup"
+            className="coffee-logo"
+          />
+
+          <h1>Data Brew</h1>
+
+          <div className="hero-divider"></div>
+
+          <p>Start your day with a cup of Data Science.</p>
+
         </header>
+
 
         {/* QUESTION GENERATOR */}
         <section className="generator-card">
@@ -84,10 +93,11 @@ function App() {
           </label>
 
           <div className="input-row">
+
             <input
               id="topic"
               type="text"
-              placeholder="e.g. machine learning, fraud detection..."
+              placeholder="e.g. machine learning, fraud detection, time series..."
               value={topic}
               onChange={(event) => setTopic(event.target.value)}
               onKeyDown={(event) => {
@@ -103,20 +113,39 @@ function App() {
             >
               {loading ? "Brewing..." : "Brew a Question"}
             </button>
+
           </div>
 
           <p className="hint">
-            Leave it blank and we'll choose a Data Science topic for you.
+            Leave it blank and we'll brew a Data Science topic for you.
           </p>
+
         </section>
+
 
         {/* BREWING STATE */}
         {loading && (
           <section className="brewing-state">
-            <div className="brewing-line"></div>
-            <p>{brewingMessage}</p>
+
+            <div className="brewing-icon">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div className="brewing-content">
+              <p className="brewing-title">
+                Brewing your question...
+              </p>
+
+              <p className="brewing-message">
+                {brewingMessage}
+              </p>
+            </div>
+
           </section>
         )}
+
 
         {/* ERROR */}
         {error && (
@@ -125,39 +154,66 @@ function App() {
           </div>
         )}
 
+
         {/* QUESTION */}
         {question && !loading && (
           <section className="question-card">
 
-            <div className="question-label">
-              TODAY'S DATA CHALLENGE
+            <div className="question-header">
+              <span className="data-mark">
+                ▮▮▮
+              </span>
+
+              <span className="question-label">
+                TODAY'S DATA CHALLENGE
+              </span>
             </div>
 
-            <p className="question">
-              {question}
-            </p>
+            <div className="question-body">
 
-            <div className="question-footer">
-              Take your time. Think before you answer.
+              <p className="question">
+                {question}
+              </p>
+
+              <div className="question-footer">
+
+                <span className="footer-mark">
+                  —
+                </span>
+
+                <span>
+                  Take your time. Think before you answer.
+                </span>
+
+              </div>
+
             </div>
 
           </section>
         )}
+
 
         {/* INITIAL STATE */}
         {!question && !loading && !error && (
           <section className="empty-state">
-            <div className="empty-icon">?</div>
 
-            <h2>Your next challenge is waiting.</h2>
+            <div className="empty-mark">
+              +
+            </div>
+
+            <h2>
+              Your next challenge is waiting.
+            </h2>
 
             <p>
               Choose a topic or let Data Brew surprise you.
             </p>
+
           </section>
         )}
 
       </main>
+
     </div>
   )
 }

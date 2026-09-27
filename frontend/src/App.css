@@ -1,217 +1,459 @@
-/* ---------- APP LAYOUT ---------- */
+/* -----------------------------------------
+   DATA BREW
+   Warm editorial / coffeehouse theme
+----------------------------------------- */
 
 .app {
   min-height: 100vh;
-  background: #f5f7fb;
-  padding: 48px 20px;
+  background:
+    radial-gradient(
+      circle at top center,
+      #f8ead7 0%,
+      #f3e0c8 35%,
+      #ead1b3 100%
+    );
+
+  color: #3d281b;
 }
+
+
+/* -----------------------------------------
+   MAIN CONTAINER
+----------------------------------------- */
 
 .container {
-  width: 100%;
-  max-width: 820px;
+  width: min(920px, calc(100% - 40px));
   margin: 0 auto;
+  padding: 60px 0 80px;
 }
 
 
-/* ---------- HEADER ---------- */
+/* -----------------------------------------
+   BRAND / HERO
+----------------------------------------- */
 
 .hero {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 40px;
+  text-align: center;
+  margin-bottom: 42px;
 }
 
-.logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: #111827;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  letter-spacing: -1px;
+.coffee-logo {
+  width: 115px;
+  height: 115px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 8px;
+
+  /*
+    The generated image has a light background.
+    This keeps it visually integrated with the page.
+  */
+  mix-blend-mode: multiply;
 }
 
 .hero h1 {
   margin: 0;
-  font-size: 30px;
-  letter-spacing: -1px;
-  color: #111827;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 7vw, 5rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -2px;
+
+  color: #422718;
+}
+
+.hero-divider {
+  width: 42px;
+  height: 3px;
+
+  margin: 18px auto 16px;
+
+  background: #a65f2a;
+  border-radius: 999px;
 }
 
 .hero p {
-  margin: 5px 0 0;
-  color: #6b7280;
-  font-size: 15px;
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+
+  color: #76533c;
 }
 
 
-/* ---------- GENERATOR ---------- */
+/* -----------------------------------------
+   GENERATOR CARD
+----------------------------------------- */
 
 .generator-card {
-  background: white;
-  padding: 28px;
+  background: rgba(255, 250, 242, 0.92);
+
+  border: 1px solid rgba(126, 82, 49, 0.14);
   border-radius: 18px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+
+  padding: 28px 30px 24px;
+
+  box-shadow:
+    0 12px 35px rgba(78, 45, 23, 0.10);
 }
 
 .generator-card label {
   display: block;
-  margin-bottom: 10px;
-  font-weight: 600;
-  color: #111827;
+
+  margin-bottom: 14px;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+
+  color: #43291b;
 }
+
+
+/* -----------------------------------------
+   INPUT + BUTTON
+----------------------------------------- */
 
 .input-row {
   display: flex;
-  gap: 12px;
+  gap: 14px;
 }
 
 .input-row input {
   flex: 1;
+
   min-width: 0;
-  padding: 14px 16px;
-  border: 1px solid #d1d5db;
+
+  padding: 15px 17px;
+
+  border: 1px solid #cdb49b;
   border-radius: 10px;
-  font-size: 15px;
+
+  background: #fffdf9;
+
+  font-size: 1rem;
+  color: #3d281b;
+
   outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.input-row input::placeholder {
+  color: #9a806a;
 }
 
 .input-row input:focus {
-  border-color: #111827;
-  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+  border-color: #a65f2a;
+
+  box-shadow:
+    0 0 0 3px rgba(166, 95, 42, 0.12);
 }
+
 
 .input-row button {
   border: none;
   border-radius: 10px;
+
   padding: 0 24px;
-  background: #111827;
-  color: white;
+
+  background: #8d4b24;
+  color: #fffaf4;
+
+  font-size: 0.98rem;
   font-weight: 600;
+
   cursor: pointer;
-  transition: 0.2s;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
 }
 
-.input-row button:hover {
-  background: #000000;
+.input-row button:hover:not(:disabled) {
+  background: #713b1d;
+  transform: translateY(-1px);
 }
 
 .input-row button:disabled {
-  opacity: 0.6;
+  opacity: 0.65;
   cursor: not-allowed;
 }
 
+
 .hint {
-  margin: 10px 0 0;
-  color: #9ca3af;
-  font-size: 13px;
+  margin: 11px 0 0;
+
+  font-size: 0.9rem;
+  color: #8c705a;
 }
 
 
-/* ---------- QUESTION CARD ---------- */
+/* -----------------------------------------
+   BREWING STATE
+----------------------------------------- */
+
+.brewing-state {
+  display: flex;
+  align-items: center;
+
+  margin-top: 20px;
+
+  padding: 25px 30px;
+
+  background: rgba(249, 231, 210, 0.92);
+
+  border: 1px solid rgba(126, 82, 49, 0.12);
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 25px rgba(78, 45, 23, 0.07);
+}
+
+.brewing-icon {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  margin-right: 25px;
+
+  border-right: 1px solid #d7bda2;
+}
+
+.brewing-icon span {
+  display: block;
+
+  width: 7px;
+  height: 18px;
+
+  border-radius: 10px;
+
+  background: #a65f2a;
+
+  animation: brewing-bars 0.9s infinite ease-in-out;
+}
+
+.brewing-icon span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.brewing-icon span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes brewing-bars {
+  0%,
+  100% {
+    height: 12px;
+    opacity: 0.45;
+  }
+
+  50% {
+    height: 28px;
+    opacity: 1;
+  }
+}
+
+.brewing-title {
+  margin: 0 0 4px;
+
+  font-size: 1.15rem;
+  font-weight: 600;
+
+  color: #4a2d1d;
+}
+
+.brewing-message {
+  margin: 0;
+
+  font-size: 0.95rem;
+  color: #85674e;
+}
+
+
+/* -----------------------------------------
+   QUESTION CARD
+----------------------------------------- */
 
 .question-card {
-  margin-top: 24px;
-  background: white;
+  margin-top: 20px;
+
+  overflow: hidden;
+
+  background: #fffaf2;
+
+  border: 1px solid rgba(126, 82, 49, 0.16);
   border-radius: 18px;
-  border: 1px solid #e5e7eb;
-  padding: 32px;
-  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+
+  box-shadow:
+    0 14px 40px rgba(78, 45, 23, 0.10);
+}
+
+.question-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 16px 30px;
+
+  background: #f5e1c9;
+
+  border-bottom: 1px solid #e3c9ab;
+}
+
+.data-mark {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+
+  color: #a65f2a;
 }
 
 .question-label {
-  font-size: 12px;
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 1.2px;
-  color: #6b7280;
-  margin-bottom: 18px;
+
+  letter-spacing: 2px;
+
+  color: #8d4b24;
+}
+
+.question-body {
+  padding: 30px;
 }
 
 .question {
   margin: 0;
-  color: #111827;
-  font-size: 21px;
-  line-height: 1.6;
-  font-weight: 500;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  line-height: 1.65;
+
+  color: #453025;
 }
 
 .question-footer {
-  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 25px;
   padding-top: 18px;
-  border-top: 1px solid #f0f0f0;
-  color: #9ca3af;
-  font-size: 13px;
+
+  border-top: 1px solid #ead9c5;
+
+  font-size: 0.9rem;
+  color: #876d57;
+}
+
+.footer-mark {
+  color: #a65f2a;
+  font-weight: 700;
 }
 
 
-/* ---------- EMPTY STATE ---------- */
+/* -----------------------------------------
+   EMPTY STATE
+----------------------------------------- */
 
 .empty-state {
   text-align: center;
-  padding: 70px 20px;
-  color: #6b7280;
+
+  padding: 60px 20px;
+
+  color: #76533c;
 }
 
-.empty-icon {
+.empty-mark {
   width: 48px;
   height: 48px;
-  margin: 0 auto 18px;
-  border-radius: 50%;
-  background: #e5e7eb;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  color: #6b7280;
+
+  margin: 0 auto 18px;
+
+  border: 1px solid #caa98b;
+  border-radius: 50%;
+
+  font-size: 1.5rem;
+
+  color: #a65f2a;
 }
 
 .empty-state h2 {
-  margin: 0;
-  color: #374151;
-  font-size: 20px;
+  margin: 0 0 8px;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+
+  color: #4a2d1d;
 }
 
 .empty-state p {
-  margin-top: 8px;
-  font-size: 14px;
+  margin: 0;
+
+  color: #896e58;
 }
 
 
-/* ---------- ERROR ---------- */
+/* -----------------------------------------
+   ERROR
+----------------------------------------- */
 
 .error-message {
   margin-top: 20px;
-  padding: 14px 16px;
+  padding: 15px 18px;
+
   border-radius: 10px;
-  background: #fef2f2;
-  color: #b91c1c;
-  font-size: 14px;
+
+  background: #f5dddd;
+  border: 1px solid #dfb8b8;
+
+  color: #7b3030;
+
+  text-align: center;
 }
 
 
-/* ---------- MOBILE ---------- */
+/* -----------------------------------------
+   MOBILE
+----------------------------------------- */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
-  .app {
-    padding: 28px 16px;
+  .container {
+    width: min(100% - 24px, 920px);
+    padding: 35px 0 50px;
   }
 
   .hero {
     margin-bottom: 28px;
   }
 
+  .coffee-logo {
+    width: 90px;
+    height: 90px;
+  }
+
   .hero h1 {
-    font-size: 25px;
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
   }
 
   .generator-card {
-    padding: 20px;
+    padding: 22px 18px;
   }
 
   .input-row {
@@ -219,58 +461,27 @@
   }
 
   .input-row button {
-    height: 48px;
+    min-height: 48px;
   }
 
-  .question-card {
-    padding: 24px;
+  .brewing-state {
+    padding: 20px;
+  }
+
+  .brewing-icon {
+    width: 55px;
+    margin-right: 18px;
+  }
+
+  .question-header {
+    padding: 14px 18px;
+  }
+
+  .question-body {
+    padding: 22px 18px;
   }
 
   .question {
-    font-size: 18px;
-  }
-}
-
-/* ---------- BREWING STATE ---------- */
-
-.brewing-state {
-  margin-top: 24px;
-  padding: 32px;
-  background: white;
-  border-radius: 18px;
-  border: 1px solid #e5e7eb;
-  text-align: center;
-}
-
-.brewing-line {
-  width: 42px;
-  height: 3px;
-  margin: 0 auto 20px;
-  background: #111827;
-  border-radius: 3px;
-  animation: brewing 1s ease-in-out infinite;
-}
-
-.brewing-state p {
-  margin: 0;
-  color: #6b7280;
-  font-size: 14px;
-  min-height: 20px;
-}
-
-@keyframes brewing {
-  0% {
-    width: 20px;
-    opacity: 0.4;
-  }
-
-  50% {
-    width: 60px;
-    opacity: 1;
-  }
-
-  100% {
-    width: 20px;
-    opacity: 0.4;
+    font-size: 1.15rem;
   }
 }
