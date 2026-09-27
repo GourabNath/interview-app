@@ -176,19 +176,10 @@ function App() {
               </p>
 
               <div className="question-footer">
-
-                <span className="footer-mark">
-                  —
-                </span>
-
-                <span>
-                  Take your time. Think before you answer.
-                </span>
-
+                Take your time. Think before you answer.
               </div>
-
             </div>
-
+            
           </section>
         )}
 

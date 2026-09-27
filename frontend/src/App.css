@@ -9,11 +9,12 @@
     radial-gradient(
       circle at top center,
       #f8ead7 0%,
-      #f3e0c8 35%,
+      #f3e0c8 38%,
       #ead1b3 100%
     );
 
   color: #3d281b;
+  padding: 60px 20px 80px;
 }
 
 
@@ -22,14 +23,14 @@
 ----------------------------------------- */
 
 .container {
-  width: min(920px, calc(100% - 40px));
+  width: 100%;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 60px 0 80px;
 }
 
 
 /* -----------------------------------------
-   BRAND / HERO
+   HEADER
 ----------------------------------------- */
 
 .hero {
@@ -38,16 +39,14 @@
 }
 
 .coffee-logo {
-  width: 115px;
-  height: 115px;
-  object-fit: contain;
+  width: 120px;
+  height: 120px;
+
   display: block;
+  object-fit: contain;
+
   margin: 0 auto 8px;
 
-  /*
-    The generated image has a light background.
-    This keeps it visually integrated with the page.
-  */
   mix-blend-mode: multiply;
 }
 
@@ -58,6 +57,7 @@
   font-size: clamp(3rem, 7vw, 5rem);
   line-height: 1;
   font-weight: 700;
+
   letter-spacing: -2px;
 
   color: #422718;
@@ -84,16 +84,16 @@
 
 
 /* -----------------------------------------
-   GENERATOR CARD
+   QUESTION GENERATOR
 ----------------------------------------- */
 
 .generator-card {
-  background: rgba(255, 250, 242, 0.92);
+  background: rgba(255, 250, 242, 0.94);
+
+  padding: 28px 30px 24px;
 
   border: 1px solid rgba(126, 82, 49, 0.14);
   border-radius: 18px;
-
-  padding: 28px 30px 24px;
 
   box-shadow:
     0 12px 35px rgba(78, 45, 23, 0.10);
@@ -123,7 +123,6 @@
 
 .input-row input {
   flex: 1;
-
   min-width: 0;
 
   padding: 15px 17px;
@@ -154,7 +153,6 @@
     0 0 0 3px rgba(166, 95, 42, 0.12);
 }
 
-
 .input-row button {
   border: none;
   border-radius: 10px;
@@ -184,7 +182,6 @@
   cursor: not-allowed;
 }
 
-
 .hint {
   margin: 11px 0 0;
 
@@ -202,7 +199,6 @@
   align-items: center;
 
   margin-top: 20px;
-
   padding: 25px 30px;
 
   background: rgba(249, 231, 210, 0.92);
@@ -262,10 +258,15 @@
   }
 }
 
+.brewing-content {
+  min-width: 0;
+  text-align: left;
+}
+
 .brewing-title {
   margin: 0 0 4px;
 
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
 
   color: #4a2d1d;
@@ -274,8 +275,15 @@
 .brewing-message {
   margin: 0;
 
-  font-size: 0.95rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+
+  text-align: left;
+
   color: #85674e;
+
+  /* Keeps changing messages from shifting the layout */
+  min-height: 20px;
 }
 
 
@@ -339,23 +347,21 @@
   color: #453025;
 }
 
-.question-footer {
-  display: flex;
-  align-items: center;
-  gap: 12px;
 
+/* -----------------------------------------
+   QUESTION FOOTER
+----------------------------------------- */
+
+.question-footer {
   margin-top: 25px;
   padding-top: 18px;
 
   border-top: 1px solid #ead9c5;
 
+  text-align: center;
+
   font-size: 0.9rem;
   color: #876d57;
-}
-
-.footer-mark {
-  color: #a65f2a;
-  font-weight: 700;
 }
 
 
@@ -430,9 +436,8 @@
 
 @media (max-width: 700px) {
 
-  .container {
-    width: min(100% - 24px, 920px);
-    padding: 35px 0 50px;
+  .app {
+    padding: 35px 12px 50px;
   }
 
   .hero {
